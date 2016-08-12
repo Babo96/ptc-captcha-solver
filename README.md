@@ -2,7 +2,8 @@ Pikapy - [[CLOSD]]Mass Pokemon Go Account Creator and ToS verifier
 ==============================================================
 
 #NOTICE
-##DUE TO NIANTIC IMPLEMENTING RECAPTCHA IN SIGN-UP PROCESS, THIS SCRIPT IS NOT WORKING ANYMORE.
+##DUE TO NIANTIC IMPLEMENTING RECAPTCHA IN THE SIGN-UP PROCESS, THIS SCRIPT IS NOT WORKING ANYMORE.
+#### Unfortunately, we cannot find a way to bypass the captcha. We are very sorry, and we hope you enjoyed the script while it worked. Thank you for all the support.
 
 Description
 -----------
