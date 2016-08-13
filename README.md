@@ -1,4 +1,4 @@
-Pikapy - [DEAD] Mass Pokemon Go Account Creator and ToS verifier
+Pikapy - [NOT DEAD] Mass Pokemon Go Account Creator and ToS verifier
 ==============================================================
 
 #NOTICE
