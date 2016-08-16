@@ -5,6 +5,9 @@ Pikapy - [NOT DEAD READ BELOW] Mass Pokemon Go Account Creator and ToS verifier
 ##DUE TO NIANTIC IMPLEMENTING RECAPTCHA IN THE SIGN-UP PROCESS, THIS SCRIPT IS NOT WORKING ANYMORE. BUT ITS NOT THE END, READ BELOW
 #### Niantic has implemented reCaptcha into their signup process, causing this script to stop working. But we are working on a website which will allow you generate accounts just with a few clicks!
 
+#UPDATE
+##THE WEB SERVICE WILL NOT BE CREATED DUE TO NIANTICS TOS, BUT WE WILL HOWEVER UPDATE THE SCRIPT SO YOU CAN USE YOUR OWN 2CAPTCHA KEY ##SO YOU CAN STILL GENERATE ACCOUNTS.
+
 Description
 -----------
 Automatically creates Pokemon Trainer Club accounts, and reads the ToS making them usable after the recent Niantic patch.
