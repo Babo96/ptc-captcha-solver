@@ -41,7 +41,7 @@ Run:
 
     pip install git+https://github.com/keyphact/pgoapi.git
 
-If you are having problems with installation, join us on https://discord.gg/2cmhB
+If you are having problems with installation, join us on https://discord.gg/pvdXf
 
 Use
 ---
