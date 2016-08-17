@@ -80,11 +80,3 @@ Example 3 (Create a new account with specified parameters)::
       Password:  hunter2
       Email   :  verifiable@lackmail.ru
 
-
-Extra Options:
-
-- *--email-tag*: Add the username as a tag to the email (e.g. address+username@gmail.com)
-Output is saved both as a list of usernames, and pokemongo-map ready -u username1 -u username2 -username3... format
-
-    
-
