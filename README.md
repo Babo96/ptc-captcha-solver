@@ -25,7 +25,7 @@ Finally, open up your command prompt and paste this command:
 
     pip install git+https://github.com/skvvv/pikapy
 
-Now you can run it via "pikapy" command
+If you are still having troubles, you can join us at discord channel https://discord.gg/vdcCy
 
 **Linux users**
 
