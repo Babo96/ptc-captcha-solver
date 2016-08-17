@@ -27,8 +27,17 @@ Finally, open up your command prompt and paste this command:
 
 If you are still having troubles, you can join us at discord channel https://discord.gg/vdcCy
 
-**Linux users**
+**Linux users/OSX**
 
+(OSX prerequisites)Selenium support:
+
+    brew install chromedriver
+(Ubuntu and variants prerequisites)
+
+    sudo apt-get install chromium-browser
+
+
+(Everyone from this point)
 From your terminal run::
 
     pip install git+https://github.com/skvvv/pikapy
