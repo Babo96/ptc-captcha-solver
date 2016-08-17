@@ -2,7 +2,13 @@
 ==============================================================
 
 ## Updated with captcha support
-
+--------------------------------
+Please update pikapy the following way:
+    
+    pip uninstall pikapy
+    
+    pip install git+https://github.com/skvvv/pikapy
+    
 Description
 -----------
 Automatically creates Pokemon Trainer Club accounts, and reads the ToS making them usable after the recent Niantic patch.
