@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import StaleElementReferenceException
-
+from strings import *
 from pikapy.ptcexceptions import *
 
 BASE_URL = "https://club.pokemon.com/us/pokemon-trainer-club"
@@ -25,8 +25,7 @@ BAD_DATA_URL = 'https://club.pokemon.com/us/pokemon-trainer-club/parents/sign-up
 
 
 def _random_string(length=15):
-    return ''.join([random.choice(string.ascii_letters + string.digits) for _ in range(length)])
-
+    return generate_words(3)
 
 def _random_email(local_length=10, sub_domain_length=5, top_domain=".com"):
     return "{local}@{sub_domain}{top_domain}".format(
