@@ -1,7 +1,7 @@
 #Pikapy - Mass Pokemon Go Account Creator and ToS verifier
 ==============================================================
 
-## Updated with captcha support
+Update
 --------------------------------
 Please update pikapy the following way:
     
