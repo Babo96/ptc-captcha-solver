@@ -4,6 +4,7 @@ __all__ = [
     'PTCInvalidNameException',
     'PTCInvalidEmailException',
     'PTCInvalidPasswordException',
+    'PTCInvalidBirthdayException',
 ]
 
 
@@ -29,4 +30,9 @@ class PTCInvalidEmailException(PTCException):
 
 class PTCInvalidPasswordException(PTCException):
     """Password invalid"""
+    pass
+
+
+class PTCInvalidBirthdayException(PTCException):
+    """Birthday invalid"""
     pass
