@@ -37,7 +37,7 @@ def _random_email(local_length=10, sub_domain_length=5, top_domain=".com"):
 
 def _random_birthday():
     """
-    Creates a birthday between 1950 and 1990
+    Creates a birthday between 1980 and 1990
     :return: string
     """
     start = datetime.datetime(1980, 1, 1)
