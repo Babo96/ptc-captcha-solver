@@ -3,8 +3,8 @@ from io import open
 from setuptools import setup
 
 DIST_NAME = 'Pikapy'
-VERSION = 'v0.2'
-AUTHOR = 'James Payne'
+VERSION = 'v0.3'
+AUTHOR = 'skvvv'
 EMAIL = 'skvvv.og@gmail.com'
 GITHUB_USER = 'skvvv'
 GITHUB_URL = 'https://github.com/{GITHUB_USER}/{DIST_NAME}'.format(**locals())
