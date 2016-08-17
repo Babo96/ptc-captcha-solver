@@ -5,9 +5,7 @@
 Description
 -----------
 Automatically creates Pokemon Trainer Club accounts, and reads the ToS making them usable after the recent Niantic patch.
-Text files will be created in your current directory. 
-
-usernames.txt will give the needed output for https://github.com/favll/pogom in username:password format.
+Text files will be created in your current directory.
 
 Installation
 ------------
@@ -60,6 +58,8 @@ Usage
 After installing the package run 'pikapy' from the terminal to create a new accounts.
 Optional parameters include *--username*, *--password*, *--email*, *--count*
 Use *--help* for command line interface help.
+
+usernames.txt file is created in the current working directory.
 
 Example 1 (Create entirely random new account)::
 
