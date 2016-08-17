@@ -1,14 +1,7 @@
 #Pikapy - Mass Pokemon Go Account Creator and ToS verifier
 ==============================================================
 
-Update
---------------------------------
-Please update pikapy the following way:
-    
-    pip uninstall pikapy
-    
-    pip install git+https://github.com/skvvv/pikapy
-    
+
 Description
 -----------
 Automatically creates Pokemon Trainer Club accounts, and reads the ToS making them usable after the recent Niantic patch.
@@ -18,34 +11,50 @@ usernames.txt will give the needed output for https://github.com/favll/pogom in 
 
 Installation
 ------------
+**Windows users**
 
-Note: If you are upgrading from the last version, you will have to update and/or reinstall the requirements.
+Install all the necessary prerequisites as listed here:
 
-Install from Github using pip::
+http://pgm.readthedocs.io/en/develop/basic-install/windows.html
+
+You will also need to download the chromedriver.exe:
+
+http://chromedriver.storage.googleapis.com/2.23/chromedriver_win32.zip
+
+Unzip and paste the chromedriver.exe file in "C:\Python27\Scripts" Folder.
+
+Finally, open up your command prompt and paste this command:
 
     pip install git+https://github.com/skvvv/pikapy
-    
-If given errors try (Due to both having python2 and python3):
-    
-    pip2 install git+https://github.com/skvvv/pikapy  
-    
-Or if given permission errors:
 
-    sudo pip2 install git+https://github.com/skvvv/pikapy  
+Now you can run it via "pikapy" command
 
-If given error:
+**Linux users**
 
-    from pgoapi import PGoApi
-    ImportError: No module named pgoapi
-    
-Run:
+From your terminal run::
 
-    pip install git+https://github.com/keyphact/pgoapi.git
+    pip install git+https://github.com/skvvv/pikapy
 
-If you are having problems with installation, join us on https://discord.gg/pvdXf
+If you have both python2 and python3 installed::
 
-Use
----
+    pip2 install git+https://github.com/skvvv/pikapy
+
+If given permission errors::
+
+    sudo pip2 install git+https://github.com/skvvv/pikapy
+
+Updating to the latest version
+------------------------------
+
+    pip install --upgrade git+https://github.com/skvvv/pikapy
+
+Uninstalling
+------------
+
+    pip uninstall pikapy
+
+Usage
+-----
 **Command line interface:**
 
 After installing the package run 'pikapy' from the terminal to create a new accounts.
