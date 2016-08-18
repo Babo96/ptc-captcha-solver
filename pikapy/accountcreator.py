@@ -2,6 +2,7 @@ import time
 import string
 import random
 import datetime
+import sys
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -10,6 +11,8 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import StaleElementReferenceException
 from strings import *
 from pikapy.ptcexceptions import *
+from requests import post, get
+from pyvirtualdisplay import Display
 
 BASE_URL = "https://club.pokemon.com/us/pokemon-trainer-club"
 
@@ -23,6 +26,9 @@ SUCCESS_URLS = (
 DUPE_EMAIL_URL = 'https://club.pokemon.com/us/pokemon-trainer-club/forgot-password?msg=users.email.exists'
 BAD_DATA_URL = 'https://club.pokemon.com/us/pokemon-trainer-club/parents/sign-up'
 
+POST_CAPTCHA_URL = "http://2captcha.com/in.php?key=@&method=userrecaptcha&googlekey=@&pageurl=@"
+GET_CAPTCHA_URL = "http://2captcha.com/res.php?key=@&action=get&id=@"
+FROM_CAPTCHA_URL = 'https://club.pokemon.com/us/pokemon-trainer-club/parents/email'
 
 def _random_string(length=15):
     return generate_words(3)
@@ -82,9 +88,32 @@ def _validate_password(password):
     if len(password) < 6 or len(password) > 15:
         raise PTCInvalidPasswordException('Password must be between 6 and 15 characters.')
     return True
-
-
-def create_account(username, password, email, birthday):
+#http://2captcha.com/res.php?key=@&action=get&id=@
+def captcha_handler(api_key,recaptcha_key):
+    solution = ""
+    print "Getting Captcha solved..."
+    posted = POST_CAPTCHA_URL.split("@")
+    FULL_POST_CAPTCHA_URL = posted[0]+api_key+posted[1]+recaptcha_key+posted[2]+FROM_CAPTCHA_URL
+    answer = get(FULL_POST_CAPTCHA_URL).text
+    if "|" in answer :
+        CAPTCHA_ID = answer.split("|")[1]
+    else:
+        print "Something is not ok!"
+        print answer
+        sys.exit()
+    posted = GET_CAPTCHA_URL.split("@")
+    FULL_GET_CAPTCHA_URL = posted[0]+api_key+posted[1]+CAPTCHA_ID
+    while solution == "":
+        solution = get(FULL_GET_CAPTCHA_URL).text
+        if "|" in solution :
+            print "Solution found!"
+            return solution.split("|")[1]
+        else:
+            solution = ""
+            #print "Not solved yet!"
+            time.sleep(1)
+    
+def create_account(username, password, email, birthday, api_key, headless):
     """
     As per PTCAccount by jepayne1138, this function raises:
       PTCInvalidNameException: If the given username is already in use.
@@ -101,10 +130,16 @@ def create_account(username, password, email, birthday):
       AssertionError: If something a URL is not as expected
     This function returns true if account was created. Raises exceptions rather than returning false.
     """
+    
+    captcha_solution = ""
+    
     if password is not None:
         _validate_password(password)
 
     print("Attempting to create user {user}:{pw}. Opening browser...".format(user=username, pw=password))
+    if headless == 1:
+        display = Display(visible=0, size=(800,600))
+        display.start()
     driver = webdriver.Chrome()
     driver.set_window_size(600, 600)
 
@@ -148,17 +183,30 @@ def create_account(username, password, email, birthday):
 
     driver.find_element_by_id("id_public_profile_opt_in_1").click()
     driver.find_element_by_name("terms").click()
-
+    
+    #2captcha handling starts here
+    recaptcha_key = driver.find_element_by_class_name("g-recaptcha").get_attribute("data-sitekey")
+    #print recaptcha_key
+    captcha_solution = captcha_handler(api_key,recaptcha_key)
+    
     # Now to handle captcha
-    print("Waiting; Please enter the captcha in the browser window...")
-    elem = driver.find_element_by_class_name("g-recaptcha")
-    driver.execute_script("arguments[0].scrollIntoView(true);", elem)
+    #print("Waiting; Please enter the captcha in the browser window...")
+    
+    #elem = driver.find_element_by_class_name("g-recaptcha")
+    #driver.execute_script("arguments[0].scrollIntoView(true);", elem)
 
     # Waits 1 minute for you to input captcha
-    WebDriverWait(driver, 60).until(EC.text_to_be_present_in_element_value((By.ID, "g-recaptcha-response"), ""))
-    print("Captcha successful. Sleeping for 1 second...")
-    time.sleep(1)
-
+    #WebDriverWait(driver, 60).until(EC.text_to_be_present_in_element_value((By.ID, "g-recaptcha-response"), ""))
+    #print("Captcha successful. Sleeping for 1 second...")
+    #time.sleep(1)
+    
+    elem = driver.find_element_by_id("g-recaptcha-response")
+    print "1"
+    driver.execute_script("$('.g-recaptcha-response').css('display','block');")
+    elem.clear()
+    print "2"
+    elem.send_keys(captcha_solution)
+    
     try:
         user.submit()
     except StaleElementReferenceException:
@@ -172,6 +220,8 @@ def create_account(username, password, email, birthday):
 
     print("Account successfully created.")
     driver.close()
+    if headless == 1:
+        display.stop()
     return True
 
 
@@ -190,7 +240,7 @@ def _validate_response(driver):
         raise PTCException("Generic failure. User was not created.")
 
 
-def random_account(username=None, password=None, email=None, birthday=None):
+def random_account(username=None, password=None, email=None, birthday=None, api_key=None, headless=0):
     try_username = _random_string() if username is None else str(username)
     password = _random_string() if password is None else str(password)
     try_email = _random_email() if email is None else str(email)
@@ -202,7 +252,7 @@ def random_account(username=None, password=None, email=None, birthday=None):
     account_created = False
     while not account_created:
         try:
-            account_created = create_account(try_username, password, try_email, try_birthday)
+            account_created = create_account(try_username, password, try_email, try_birthday, api_key, headless)
         except PTCInvalidNameException:
             if username is None:
                 try_username = _random_string()
