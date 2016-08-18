@@ -57,7 +57,7 @@ If you are still having troubles, you can join us at discord channel https://dis
 
 	sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
 
-	
+	sudo apt-get install xvfb
 
 	(Everyone from this point)
 From your terminal run::
