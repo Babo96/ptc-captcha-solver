@@ -95,6 +95,8 @@ def captcha_handler(api_key,recaptcha_key):
     posted = POST_CAPTCHA_URL.split("@")
     FULL_POST_CAPTCHA_URL = posted[0]+api_key+posted[1]+recaptcha_key+posted[2]+FROM_CAPTCHA_URL
     answer = get(FULL_POST_CAPTCHA_URL).text
+    i = 0
+    
     if "|" in answer :
         CAPTCHA_ID = answer.split("|")[1]
     else:
@@ -108,10 +110,14 @@ def captcha_handler(api_key,recaptcha_key):
         if "|" in solution :
             print "Solution found!"
             return solution.split("|")[1]
-        else:
+        else :
             solution = ""
             #print "Not solved yet!"
             time.sleep(1)
+            i = i+1
+            if i > 300:
+                print "Error while resolving the captcha!Timeout 300 sec "
+                sys.exit()
     
 def create_account(username, password, email, birthday, api_key, headless):
     """
@@ -201,10 +207,8 @@ def create_account(username, password, email, birthday, api_key, headless):
     #time.sleep(1)
     
     elem = driver.find_element_by_id("g-recaptcha-response")
-    print "1"
     driver.execute_script("$('.g-recaptcha-response').css('display','block');")
     elem.clear()
-    print "2"
     elem.send_keys(captcha_solution)
     
     try:
