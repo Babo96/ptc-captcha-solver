@@ -1,4 +1,4 @@
-#Pikapy - Mass Pokemon Go Account Creator and ToS verifier
+#Babos Branch of Pikapy - Mass Pokemon Go Account Creator and ToS verifier
 ==============================================================
 
 
@@ -6,6 +6,10 @@ Description
 -----------
 Automatically creates Pokemon Trainer Club accounts, and reads the ToS making them usable after the recent Niantic patch.
 Text files will be created in your current directory.
+Added functionality:
+-Mass create accounts with scheme: UsernameNR
+-Auto use Google Mail + Trick Mailaddress+Username@gmail.com
+-Auto solve Captchas via 2Captcha API
 
 Installation
 ------------
