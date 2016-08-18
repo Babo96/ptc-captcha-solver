@@ -62,20 +62,20 @@ If you are still having troubles, you can join us at discord channel https://dis
 	(Everyone from this point)
 From your terminal run::
 
-    pip install git+https://github.com/skvvv/pikapy
+    pip install git+https://github.com/babo96/ptc-captcha-solver
 
 If you have both python2 and python3 installed::
 
-    pip2 install git+https://github.com/skvvv/pikapy
+    pip2 install git+https://github.com/babo96/ptc-captcha-solver
 
 If given permission errors::
 
-    sudo pip2 install git+https://github.com/skvvv/pikapy
+    sudo pip2 install git+https://github.com/babo96/ptc-captcha-solver
 
 Updating to the latest version
 ------------------------------
 
-    pip install --upgrade git+https://github.com/skvvv/pikapy
+    pip install --upgrade git+https://github.com/babo96/ptc-captcha-solver
 
 Uninstalling
 ------------
