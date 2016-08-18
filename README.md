@@ -30,9 +30,8 @@ Unzip and paste the chromedriver.exe file in "C:\Python27\Scripts" Folder.
 
 Finally, open up your command prompt and paste this command:
 
-    pip install git+https://github.com/skvvv/pikapy
+    pip install git+https://github.com/babo96/ptc-captcha-solver
 
-If you are still having troubles, you can join us at discord channel https://discord.gg/vdcCy
 
 **Linux users/OSX**
 
