@@ -12,6 +12,7 @@ import pprint
 import time
 import threading
 import getopt
+import user
 
 
 def parse_arguments(args):
@@ -41,8 +42,20 @@ def parse_arguments(args):
         help='Birthday for the new account. Must be YYYY-MM-DD. (defaults to a random birthday).'
     )
     parser.add_argument(
+        '-s','--start', type=int,default=1,
+        help='Start of the Username Range.'
+    )
+    parser.add_argument(
         '-c','--count', type=int,default=1,
-        help='Number of accounts to generate.'
+        help='Count Users to be created.'
+    )
+    parser.add_argument(
+        '-a','--api', type=str,default=None,
+        help='Insert 2Captcha API Key here.'
+    )
+    parser.add_argument(
+        '-s','--headless', type=int,default=0,
+        help='Needed when on a headless Linux server!.'
     )
 
     return parser.parse_args(args)
@@ -51,9 +64,11 @@ def parse_arguments(args):
 def entry():
     """Main entry point for the package console commands"""
     args = parse_arguments(sys.argv[1:])
-    for x in range(0,args.count):
+    for x in range(args.start,args.start+args.count):
         try:
-            account_info = pikapy.random_account(args.username, args.password, args.email, args.birthday)
+            user = args.username + str(x)
+            plusmail = args.email.split("@")[0]+"+"+user+"@"+args.email.split("@")[1]
+            account_info = pikapy.random_account(user, args.password, plusmail, args.birthday, args.api, args.headless)
             
             print('  Username:  {}'.format(account_info["username"]))
             print('  Password:  {}'.format(account_info["password"]))
@@ -81,7 +96,7 @@ def accept_tos(username, password):
         try:
             api = PGoApi()
             #Set spawn to NYC
-            api.set_position(40.7127837, -74.005941, 0.0)
+            api.set_position(49.4536783, 11.077678699999979, 299.0)
             api.login('ptc', username, password)
             time.sleep(0.5)
             req = api.create_request()
