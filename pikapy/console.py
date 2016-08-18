@@ -54,7 +54,7 @@ def parse_arguments(args):
         help='Insert 2Captcha API Key here.'
     )
     parser.add_argument(
-        '-s','--headless', type=int,default=0,
+        '-hl','--headless', type=int,default=0,
         help='Needed when on a headless Linux server!.'
     )
 
