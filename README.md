@@ -7,8 +7,11 @@ Description
 Automatically creates Pokemon Trainer Club accounts, and reads the ToS making them usable after the recent Niantic patch.
 Text files will be created in your current directory.
 Added functionality:
+
 -Mass create accounts with scheme: UsernameNR
+
 -Auto use Google Mail + Trick Mailaddress+Username@gmail.com
+
 -Auto solve Captchas via 2Captcha API
 
 Installation
@@ -40,8 +43,23 @@ If you are still having troubles, you can join us at discord channel https://dis
 
     sudo apt-get install chromium-browser
 
+	sudo apt-get install unzip
 
-(Everyone from this point)
+	wget -N http://chromedriver.storage.googleapis.com/2.23/chromedriver_linux64.zip -P ~/Downloads
+
+	unzip ~/Downloads/chromedriver_linux64.zip -d ~/Downloads
+
+	chmod +x ~/Downloads/chromedriver
+
+	sudo mv -f ~/Downloads/chromedriver /usr/local/share/chromedriver
+
+	sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+
+	sudo ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
+
+	
+
+	(Everyone from this point)
 From your terminal run::
 
     pip install git+https://github.com/skvvv/pikapy
